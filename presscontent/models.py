@@ -4,7 +4,7 @@ from django.utils.text import slugify
 
 class PressContent(models.Model):
     label = models.CharField(null=False, blank=False, max_length=255)
-    url = models.SlugField(unique=True, editable=False, max_length=255)
+    slug = models.SlugField(unique=True, editable=False, max_length=255)
     date = models.DateTimeField(null=False) # Published Date
     created = models.DateTimeField(auto_now_add=True)
     modified = models.DateTimeField(auto_now=True)
@@ -14,19 +14,19 @@ class PressContent(models.Model):
         verbose_name='Presscontent'
         verbose_name_plural = 'PressContents'
 
-    def get_url(self):
-        date = self.date.strftime("%Y/%m/%d")
-        url = '{}/{}'.format(date, slugify(self.label.replace("ı", "i")))
-        unique = url
-        number = 1
-        while PressContent.objects.filter(url=unique).exists():
-            unique = '{}-{}'.format(url, number)
-            number += 1
-        return unique
-
     def __str__(self):
         return self.label
 
+    def get_slug(self):
+        date = self.date.strftime("%Y/%m/%d")
+        slug = '{}/{}'.format(date, slugify(self.label.replace("ı", "i")))
+        unique = slug
+        number = 1
+        while PressContent.objects.filter(slug=unique).exists():
+            unique = '{}-{}'.format(slug, number)
+            number += 1
+        return unique
+
     def save(self, *args, **kwargs):
-        self.url = self.get_url()
+        self.slug = self.get_slug()
         return super(PressContent, self).save(*args, **kwargs)
