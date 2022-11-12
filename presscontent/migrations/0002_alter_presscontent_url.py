@@ -6,7 +6,7 @@ from django.db import migrations, models
 class Migration(migrations.Migration):
 
     dependencies = [
-        ('pagecontent_api', '0001_initial'),
+        ('presscontent', '0001_initial'),
     ]
 
     operations = [

@@ -32,7 +32,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'rest_framework',
     # Custom APPS
-    'pagecontent_api'
+    'presscontent'
 ]
 
 MIDDLEWARE = [

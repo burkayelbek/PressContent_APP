@@ -18,5 +18,5 @@ from django.urls import path, include
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', include('pagecontent_api.urls'))
+    path('', include('presscontent.urls', namespace='presscontent'))
 ]
