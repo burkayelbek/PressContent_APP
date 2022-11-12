@@ -1,6 +1,18 @@
-from django.shortcuts import render
-from django.http import HttpResponse
+from rest_framework.generics import (ListAPIView, RetrieveAPIView, get_object_or_404)
+from pagecontent_api.models import PressContent
+from pagecontent_api.serializers import PressContentSerializer
+from pagecontent_api.pagination import PressContentPagination
 
 
-def test_api(self):
-    return HttpResponse("Hello World")
+class PressContentListAPIView(ListAPIView):
+    queryset = PressContent.objects.all()
+    serializer_class = PressContentSerializer
+    pagination_class = PressContentPagination
+
+
+class PressContentDetailAPIView(RetrieveAPIView):
+    queryset = PressContent.objects.all()
+    serializer_class = PressContentSerializer
+    lookup_field = 'pk'
+
+
