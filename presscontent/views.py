@@ -3,6 +3,7 @@ from presscontent.models import PressContent
 from presscontent.serializers import PressContentSerializer
 from presscontent.pagination import PressContentPagination
 from rest_framework.filters import OrderingFilter
+from django.http import HttpResponse
 
 
 class PressContentListAPIView(ListAPIView):
@@ -16,3 +17,4 @@ class PressContentDetailAPIView(RetrieveAPIView):
     queryset = PressContent.objects.all()
     serializer_class = PressContentSerializer
     lookup_field = 'slug'
+
